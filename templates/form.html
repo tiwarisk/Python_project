@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Default Credit Predictor</title>
+
+    <link rel="shortcut icon" href="{{url_for('static', filename='favicon.ico')}}" type="image/x-icon"> 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <div id="desk container" style="background-image: url('{{ url_for('static', filename='bg-masthead.jpg') }}')">
+        <header id="header" class="header-header">
+            <section id="nav-section">
+                <nav class="container navbar navbar-expand-md navbar-light">
+                <a class="navbar-brand" id="nav-logo" href="/"><span><img src="{{url_for('static', filename='logo.png')}}"></span> DEVILMIND INC.</a>
+                <button class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav"
+                    aria-controls="navbarNav"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="nav-elements collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav text-center ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/">HOME</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/form">PREDICTOR</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">CONTACT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">ABOUT</a>
+                    </li>
+                    </ul>
+                </div>
+                </nav>
+            </section>  
+        </header>
+
+        <h5 class="text-danger "></h5>
+        <table id="pred_form">
+
+            {% if alert_message %}
+                <center><div class="alert alert-danger">{{ alert_message }}</div></center>
+            {% endif %}
+
+            {% if success_message %}
+                <center><div class="alert alert-success">{{ success_message }}</div></center>
+            {% endif %}
+
+            <form class="form-centered" action="/form" method="post">
+
+                <tr>
+                    <td colspan="6"><h2>PERSONAL DETAILS</h2></td>
+                </tr>
+                <tr>
+                    <td><input type="number" class="form-control" placeholder="BALANCE PROVIDED" name="LIMIT_BAL" aria-describedby="basic-addon1"></td>
+                    <td>
+                        <select class="form-control" name="GENDER">
+                            <option selected value=1>GENDER</option>
+                            <option value=1>MALE</option>
+                            <option value=2>FEMALE</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control" name="EDUCATION">
+                            {% for education in education_status %}
+                            <option>{{ education }}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control" name="MARRIAGE">
+                            {% for marriage in marital_status %}
+                            <option>{{ marriage }}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                    <td><input class="form-control" type="number" placeholder="AGE IN YEARS" name="AGE" aria-describedby="basic-addon1"></td>
+                    <td>
+                        <select class="form-control" name="MODEL">
+                            <option selected>MODEL TYPE</option>
+                            <option value=1>ADABOOST</option>
+                            <option value=2>XBOOST</option>
+                            <option value=3>RANDOMFOREST CLASSIFIER</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="6" style="padding-top:2%;"><h2>PAYMENT DELAY FOR 6 CONSECUTIVE MONTHS</h2></td>
+                </tr>
+                <tr>
+                    <td>
+                        <select class="form-control" name="PAY_0">
+                            {% for payment in payment_status %}
+                            <option>{{ payment }}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control" name="PAY_2">
+                            {% for payment in payment_status %}
+                            <option>{{ payment }}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control" name="PAY_3">
+                            {% for payment in payment_status %}
+                            <option>{{ payment }}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control" name="PAY_4">
+                            {% for payment in payment_status %}
+                            <option>{{ payment }}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control" name="PAY_5">
+                            {% for payment in payment_status %}
+                            <option>{{ payment }}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control" name="PAY_6">
+                            {% for payment in payment_status %}
+                            <option>{{ payment }}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+        
+                <tr>
+                    <td colspan="6" style="padding-top:2%;"><h2>PAYED AMOUNT FOR SAME</h2></td>
+                </tr>
+                
+                <tr>
+                    <td><input type="number" class="form-control" placeholder="MONTH 1" name="PAY_AMT1" aria-describedby="basic-addon1"></td>
+                    <td><input type="number" class="form-control" placeholder="MONTH 2" name="PAY_AMT2" aria-describedby="basic-addon1"></td>
+                    <td><input type="number" class="form-control" placeholder="MONTH 3" name="PAY_AMT3" aria-describedby="basic-addon1"></td>
+                    <td><input type="number" class="form-control" placeholder="MONTH 4" name="PAY_AMT4" aria-describedby="basic-addon1"></td>
+                    <td><input type="number" class="form-control" placeholder="MONTH 5" name="PAY_AMT5" aria-describedby="basic-addon1"></td>
+                    <td><input type="number" class="form-control" placeholder="MONTH 6" name="PAY_AMT6" aria-describedby="basic-addon1"></td>
+                </tr>
+        
+                <tr>
+                    <td colspan="6" style="padding-top:3%;"><h2>BILL STATEMENT</h2></td>
+                </tr>
+                
+                <tr>
+                    <td><input type="number" class="form-control" placeholder="MONTH 1" name="BILL_AMT1" aria-describedby="basic-addon1"></td>
+                    <td><input type="number" class="form-control" placeholder="MONTH 2" name="BILL_AMT2" aria-describedby="basic-addon1"></td>
+                    <td><input type="number" class="form-control" placeholder="MONTH 3" name="BILL_AMT3" aria-describedby="basic-addon1"></td>
+                    <td><input type="number" class="form-control" placeholder="MONTH 4" name="BILL_AMT4" aria-describedby="basic-addon1"></td>
+                    <td><input type="number" class="form-control" placeholder="MONTH 5" name="BILL_AMT5" aria-describedby="basic-addon1"></td>
+                    <td><input type="number" class="form-control" placeholder="MONTH 6" name="BILL_AMT6" aria-describedby="basic-addon1"></td>
+                </tr>
+        
+                <tr>
+                    <td colspan="2"></td>
+                    <td colspan="2" style="padding-top:2%;"><input type="submit" value="SHOW ME THE PREDICTION" id="submit" class="form-control bg-transparent"/></td>
+                    <td colspan="2"></td>
+                </tr>
+                <tr>
+                    <td colspan="6" style="color: #b95b69"><h6><strong>Above all fields are mandatory to be filled. For drop down if not selected will use default values.</strong></h6></td>
+                </tr>
+                <tr>
+                    <td colspan="6" style="color: #b95b69"><h3><strong>{{prediction_text}}</strong></h3></td>
+                </tr>
+            </form>
+        </table>
+    </div>
+
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+nav div ul li :hover { 
+    border-radius: 2px 2px 2px 2px;
+    padding-inline-end: auto;
+    padding-bottom: 0px;
+    font-weight: bolder;
+}
+
+nav div ul li {
+    padding-left: 5%;
+}
+
+nav div ul li :hover{
+    border-bottom: 3px solid black;
+}
+nav div ul li a:focus{
+    font-weight: bolder;
+}
+
+nav {
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    font-size: 150%;
+    padding-bottom: 4px;
+}
+
+#nav-logo {
+    font-family: algerian;
+}
+
+#nav-logo span img {
+    height: 5%;
+    width: 5%; 
+}
+
+#title {
+    position: absolute;
+    top: 30%;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.title {
+    text-align: center;
+    font-size: 500%;
+    font-weight: bolder;
+    color: linear-gradient(to bottom, white, lightgrey, gray); 
+}
+
+hr {
+    margin: auto auto;
+    width: 50%;
+    align-content: center;
+    background-color:grey;  
+    border: 2px dashed black;
+}
+
+button { 
+    border-color: black;
+}
+
+#butt, #submit {
+    color: black;
+    text-decoration: none;
+    font-size: 125%;
+    font-family: 'Courier New', Courier, monospace;
+    border: 5px solid #92d0e2;
+    font-weight: bold;
+    background-color: none;
+}
+
+#form {
+    background-image: url(Assets/bg-signup.jpg);
+}
+
+#pred_form {
+    align-items: center;
+    margin: auto auto;
+    text-align: center;
+}
+
+#pred_form tr td {
+    padding: 5px;
+}
+
+#butt, #submit:hover {
+    background-image: linear-gradient(#815499, #1C00ff00,#1C00ff00,#1C00ff00,#1C00ff00,#1C00ff00, #815499);
+    border-color: rgb(129, 84, 153, 0.3);
+    color: #815499;
+}
